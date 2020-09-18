@@ -1,5 +1,5 @@
 #include "WiFiEsp.h"
-
+#include "moto.h"
 // Emulate Serial1 on pins 6/7 if not present
 #ifndef HAVE_HWSERIAL1
 #include "SoftwareSerial.h"
@@ -37,6 +37,8 @@ void setup()
   }
 
   Serial.println("You're connected to the network");
+
+  servo_initial();
 }
 
 void loop()
@@ -45,8 +47,8 @@ void loop()
   Serial.println();
   printCurrentNet();
   printWifiData();
-  
-  delay(10000);
+  servo_loop();
+  // delay(10000);
 }
 
 void printWifiData()
@@ -63,6 +65,7 @@ void printWifiData()
   sprintf(buf, "%02X:%02X:%02X:%02X:%02X:%02X", mac[5], mac[4], mac[3], mac[2], mac[1], mac[0]);
   Serial.print("MAC address: ");
   Serial.println(buf);
+  
 }
 
 void printCurrentNet()
