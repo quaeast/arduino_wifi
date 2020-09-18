@@ -3,11 +3,11 @@ Servo myservo;  //创建一个舵机控制对象
                           // 使用Servo类最多可以控制8个舵机
 int pos = 0;    // 该变量用与存储舵机角度位置
 int val;
-void setup() 
+void servo_init() 
 { 
   myservo.attach(9);  // 该舵机由arduino第九脚控制
 } 
-void loop() 
+void servo_run() 
 { 
   myservo.write(180);
   delay(5000);
