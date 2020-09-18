@@ -1,4 +1,4 @@
-/* Sweep
+ /* Sweep
  by BARRAGAN <http://barraganstudio.com>
  This example code is in the public domain.
 
@@ -20,7 +20,7 @@ void servo_initial() {
 
 void servo_loop() {
   myservo.write(180);   
-  delay(10000);
+  delay(5000);
   myservo.write(0);   
-  delay(10000);
+  delay(5000);
 }
