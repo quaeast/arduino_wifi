@@ -17,13 +17,15 @@ void first_wifi_serial_setup() {
   Serial1.write("AT+UART_DEF=9600,8,1,0,0\r\n");
 }
 
-void my_wifi_set_up() {
+void my_wifi_init() {
   // initialize serial for ESP module
   Serial1.begin(9600);
 
   // initialize ESP module
   WiFi.init(&Serial1);
+}
 
+void my_wifi_connect() {
   // check for the presence of the shield
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi shield not present");
