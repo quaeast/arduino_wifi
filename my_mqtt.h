@@ -1,4 +1,5 @@
 #include "PubSubClient.h"
+#include "WiFiEsp.h"
 
 IPAddress mqtt_server(39, 96, 177, 143);  //你的服务器地址
 WiFiEspClient espClient;
@@ -15,7 +16,7 @@ void callback(char *topic, byte *payload, unsigned int length) {
 void my_mqtt_set_up() {
   client.setServer(mqtt_server, 1883);
   client.setCallback(callback);
-  Serial.println(client.connected());
+  delay(5000);
 }
 
 void reconnect() {
@@ -26,15 +27,14 @@ void reconnect() {
         String(random(0xffff), HEX);  //产生一个随机数字 以免多块板子重名
     if (client.connect(clientId.c_str())) {
       Serial.println("connected");
-      client.publish("outTopic",
-                     "hello world");  //链接成功后 会发布这个主题和语句
-      client.subscribe(
-          "inTopic");  //这个是你让板子订阅的主题（接受该主题的消息）
+      client.publish("outTopic", "hello world");  //链接成功后 会发布这个主题和语句
+      client.subscribe("inTopic");  //这个是你让板子订阅的主题（接受该主题的消息）
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
       Serial.println(" try again in 5 seconds");
       delay(5000);
     }
+    delay(5000);
   }
 }

@@ -9,14 +9,18 @@ char ssid[] = "fang";         // your network SSID (name)
 char pass[] = "12345678";     // your network password
 int status = WL_IDLE_STATUS;  // the Wifi radio's status
 
+void first_wifi_serial_setup() {
+  // reset wifi model
+  Serial1.write("AT+RST\r\n");
+  delay(5000);
+  // set the serial between esp01 and uno
+  Serial1.write("AT+UART_DEF=9600,8,1,0,0\r\n");
+}
+
 void my_wifi_set_up() {
   // initialize serial for ESP module
   Serial1.begin(9600);
 
-  // reset wifi model
-  // Serial1.write("AT+RST\r\n");
-  // set the serial between esp01 and uno
-  // Serial1.write("AT+UART_DEF=9600,8,1,0,0\r\n");
   // initialize ESP module
   WiFi.init(&Serial1);
 
