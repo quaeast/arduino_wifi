@@ -6,6 +6,11 @@
 * Esp 8266-01s
 * MG995
 
+## 依赖库
+
+* [Arduino Client for MQTT](https://github.com/knolleary/pubsubclient/)
+* [WiFiEsp](https://github.com/bportaluri/WiFiEsp)
+
 ## 连接
 
 ### Arduino -- Esp 8266-01s
@@ -25,3 +30,15 @@
 | Black  | GND     |
 | Yellow | 9       |
 
+## MQTT
+
+```bash
+# 安装客户端
+brew install mosquitto
+
+# 终端1 订阅
+mosquitto_sub -h 39.96.177.143 -t  "inTopic"  -v
+
+# 终端2 发送消息
+mosquitto_pub -h 39.96.177.143 -t "inTopic"  -m  "hello mqtt"
+```

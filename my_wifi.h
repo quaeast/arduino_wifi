@@ -2,21 +2,21 @@
 // Emulate Serial1 on pins 6/7 if not present
 #ifndef HAVE_HWSERIAL1
 #include "SoftwareSerial.h"
-SoftwareSerial Serial1(6, 7); // RX, TX
+SoftwareSerial Serial1(6, 7);  // RX, TX
 #endif
 
-char ssid[] = "fang";            // your network SSID (name)
-char pass[] = "12345678";        // your network password
-int status = WL_IDLE_STATUS;     // the Wifi radio's status
+char ssid[] = "fang";         // your network SSID (name)
+char pass[] = "12345678";     // your network password
+int status = WL_IDLE_STATUS;  // the Wifi radio's status
 
-void my_wifi_set_up(){
+void my_wifi_set_up() {
   // initialize serial for ESP module
   Serial1.begin(9600);
 
   // reset wifi model
-  //Serial1.write("AT+RST\r\n");
+  // Serial1.write("AT+RST\r\n");
   // set the serial between esp01 and uno
-  //Serial1.write("AT+UART_DEF=9600,8,1,0,0\r\n");
+  // Serial1.write("AT+UART_DEF=9600,8,1,0,0\r\n");
   // initialize ESP module
   WiFi.init(&Serial1);
 
@@ -24,11 +24,12 @@ void my_wifi_set_up(){
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi shield not present");
     // don't continue
-    while (true);
+    while (true)
+      ;
   }
 
   // attempt to connect to WiFi network
-  while ( status != WL_CONNECTED) {
+  while (status != WL_CONNECTED) {
     Serial.print("Attempting to connect to WPA SSID: ");
     Serial.println(ssid);
     // Connect to WPA/WPA2 network
@@ -36,12 +37,9 @@ void my_wifi_set_up(){
   }
 
   Serial.println("You're connected to the network");
-
 }
 
-
-void printWifiData()
-{
+void printWifiData() {
   // print your WiFi shield's IP address
   IPAddress ip = WiFi.localIP();
   Serial.print("IP Address: ");
@@ -51,14 +49,13 @@ void printWifiData()
   byte mac[6];
   WiFi.macAddress(mac);
   char buf[20];
-  sprintf(buf, "%02X:%02X:%02X:%02X:%02X:%02X", mac[5], mac[4], mac[3], mac[2], mac[1], mac[0]);
+  sprintf(buf, "%02X:%02X:%02X:%02X:%02X:%02X", mac[5], mac[4], mac[3], mac[2],
+          mac[1], mac[0]);
   Serial.print("MAC address: ");
   Serial.println(buf);
-  
 }
 
-void printCurrentNet()
-{
+void printCurrentNet() {
   // print the SSID of the network you're attached to
   Serial.print("SSID: ");
   Serial.println(WiFi.SSID());
@@ -67,7 +64,8 @@ void printCurrentNet()
   byte bssid[6];
   WiFi.BSSID(bssid);
   char buf[20];
-  sprintf(buf, "%02X:%02X:%02X:%02X:%02X:%02X", bssid[5], bssid[4], bssid[3], bssid[2], bssid[1], bssid[0]);
+  sprintf(buf, "%02X:%02X:%02X:%02X:%02X:%02X", bssid[5], bssid[4], bssid[3],
+          bssid[2], bssid[1], bssid[0]);
   Serial.print("BSSID: ");
   Serial.println(buf);
 
