@@ -37,8 +37,8 @@
 brew install mosquitto
 
 # 终端1 订阅
-mosquitto_sub -h 39.96.177.143 -t  "inTopic"  -v
+mosquitto_sub -h 39.96.177.143 -t  "outTopic"  -v
 
 # 终端2 发送消息
-mosquitto_pub -h 39.96.177.143 -t "inTopic"  -m  "hello mqtt"
+mosquitto_pub -h 39.96.177.143 -t "inTopic"  -m  "inTopic mqtt"
 ```
