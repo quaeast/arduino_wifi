@@ -20,8 +20,8 @@ void first_wifi_serial_setup() {
 void my_wifi_init() {
   // initialize serial for ESP module
   Serial1.begin(9600);
-
   // initialize ESP module
+//  Serial1.write("AT+UART_DEF=9600,8,1,0,0\r\n");
   WiFi.init(&Serial1);
 }
 

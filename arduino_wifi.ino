@@ -5,7 +5,7 @@ long lastReconnectAttempt = 0;
 
 void setup() {
   // initialize serial for debugging
-//  Serial.begin(9600);
+  Serial.begin(9600);
   my_wifi_init();
   my_wifi_connect();
   reconnect();
@@ -13,6 +13,7 @@ void setup() {
 
 void loop() {
   if (!client.loop()) {
+    Serial.println("lost connection");
     reconnect();   
   }
 }
