@@ -28,7 +28,7 @@ void my_wifi_init() {
 void my_wifi_connect() {
   // check for the presence of the shield
   if (WiFi.status() == WL_NO_SHIELD) {
-//    Serial.println("WiFi shield not present");
+    Serial.println("WiFi shield not present");
     // don't continue
     while (true)
       ;
@@ -36,13 +36,13 @@ void my_wifi_connect() {
 
   // attempt to connect to WiFi network
   while (status != WL_CONNECTED) {
-//    Serial.print("Attempting to connect to WPA SSID: ");
-//    Serial.println(ssid);
+    Serial.print("Attempting to connect to WPA SSID: ");
+    Serial.println(ssid);
     // Connect to WPA/WPA2 network
     status = WiFi.begin(ssid, pass);
   }
 
-//  Serial.println("You're connected to the network");
+  Serial.println("You're connected to the network");
 }
 
 void printWifiData() {
