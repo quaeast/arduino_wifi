@@ -19,6 +19,7 @@ void servo_initial() {
 }
 
 void servo_move(){
+  Serial.println("servo start to move");
   myservo.attach(9);
   myservo.write(180);
   delay(3000);
@@ -28,6 +29,7 @@ void servo_move(){
     delay(15);
   }
   myservo.detach();
+  Serial.println("servo moved");
 }
 
 void servo_move_ex() {
